@@ -1,6 +1,7 @@
 from django.db import models
 import tinymce.models
 import datetime
+from blurbs.validators import validate_wordcount
 
 class BlurbManager(models.Manager):
     def active(self):
@@ -10,7 +11,7 @@ class BlurbManager(models.Manager):
 
 class Blurb(models.Model):
     title = models.CharField(max_length=50)
-    body = tinymce.models.HTMLField()
+    body = tinymce.models.HTMLField(validators=[validate_wordcount])
     comments = tinymce.models.HTMLField(blank=True)
     author = models.CharField(max_length=50, blank=True)
     email = models.EmailField(blank=True)
