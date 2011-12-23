@@ -1,0 +1,30 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background: white;
+    color: black;
+}
+
+#page-container {
+    margin: auto;
+}
+
+#header {
+    height: auto;
+    background-color: red;
+    color: white;
+    border: 1px solid black;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-size: 1.2em;
+}
+
+#header h1 {
+    margin: 0;
+    font-size: 4em;    
+}
+
+#body {
+    margin-top: 1px;
+    clear: left;
+}
