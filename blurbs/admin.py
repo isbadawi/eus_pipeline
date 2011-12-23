@@ -5,8 +5,10 @@ from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
 
 class BlurbAdmin(admin.ModelAdmin):
-    list_display = ['title', 'contact_info', 'run_until', 'approved']
+    list_display = ['title', 'contact_info', 'date_submitted', 
+        'run_until', 'approved']
     list_filter = ['approved']
+    readonly_fields = ['author', 'email']
     fieldsets = [
         ('Blurb', {
             'fields': ['title', 'body', 'run_until', 'comments']

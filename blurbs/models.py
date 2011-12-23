@@ -19,10 +19,14 @@ class Blurb(models.Model):
     )
     author = models.CharField(max_length=50, blank=True)
     email = models.EmailField(blank=True)
+    date_submitted = models.DateTimeField(auto_now_add=True)
     run_until = models.DateField()
     approved = models.BooleanField(default=False)
 
     objects = BlurbManager()
+
+    class Meta:
+        ordering = ['-date_submitted']
 
     def __unicode__(self):
         return self.title
