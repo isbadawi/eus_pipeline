@@ -13,11 +13,12 @@ class Blurb(models.Model):
     author = models.CharField(max_length=50)
     email = models.EmailField()
     run_until = models.DateField()
+    approved = models.BooleanField(default=False)
 
     objects = BlurbManager()
 
     def __unicode__(self):
         return self.title
 
-    def run(self):
+    def active(self):
         return self.run_until >= datetime.date.today()
