@@ -9,6 +9,7 @@ class BlurbAdmin(admin.ModelAdmin):
         'run_until', 'approved']
     list_filter = ['approved']
     readonly_fields = ['author', 'email']
+    search_fields = ['title']
     fieldsets = [
         ('Blurb', {
             'fields': ['title', 'body', 'run_until', 'comments']
