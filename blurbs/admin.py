@@ -25,7 +25,7 @@ class BlurbAdmin(admin.ModelAdmin):
         msg = '%s blurb%s' % (rows, 's' if rows > 1 else '')
         self.message_user(request, '%s successfully approved.' % msg)
         for blurb in [b for b in queryset if b.email]:
-            send_email('Blurb approved', 'approved.txt', blurb.email, blurb=blurb)
+            send_email('Blurb approved', 'approved.html', blurb.email, blurb=blurb)
     approve.short_description = 'Approve selected blurbs'
 
     def reject(self, request, queryset):
@@ -34,7 +34,7 @@ class BlurbAdmin(admin.ModelAdmin):
         msg = '%s blurb%s' % (rows, 's' if rows > 1 else '')
         self.message_user(request, '%s successfully rejected.' % msg)
         for blurb in [b for b in queryset if b.email]:
-            send_email('Blurb rejected', 'rejected.txt', blurb.email, blurb=blurb)
+            send_email('Blurb rejected', 'rejected.html', blurb.email, blurb=blurb)
     reject.short_description = 'Reject (and delete) selected blurbs'
 
 admin.site.unregister(Group)

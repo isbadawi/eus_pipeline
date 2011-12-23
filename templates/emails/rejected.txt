@@ -1,8 +1,0 @@
-Hi,
-
-Your blurb, "{{ blurb.title }}" was rejected. It will not appear in the
-EUS pipeline. You may want to try 
-<a href="http://ssmu.mcgill.ca/about-us/listserv/">the SSMU listserv</a>.
-Thank you for using the pipeline.
-
-This is an automated notification. Do not reply to this email.
