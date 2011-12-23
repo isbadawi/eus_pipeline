@@ -5,14 +5,12 @@
 {% endblock %}
 
 {% block body %}
-{% if form.non_field_errors %}{{ form.non_field_errors }}{% endif %}
+<form action="" method="post">
+{% csrf_token %}
 {% for fieldset in form.fieldsets %}
     <fieldset class="{{ fieldset.classes }}">
     {% if fieldset.legend %}
         <legend>{{ fieldset.legend }}</legend>
-    {% endif %}
-    {% if fieldset.description %}
-        <p class="description">{{ fieldset.description }}</p>
     {% endif %}
     <ul>
     {% for field in fieldset %}
@@ -22,6 +20,7 @@
         <li{{ field.row_attrs }}>
             {{ field.errors }}
             {{ field.label_tag }}
+            <div class="help-text">{{ field.help_text }}</div>
             {{ field }}
         </li>
     {% endif %}
@@ -29,4 +28,6 @@
   </ul>
   </fieldset>
 {% endfor %}
+<input type="submit" value="Submit blurb"/>
+</form>
 {% endblock %}

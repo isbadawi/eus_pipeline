@@ -17,7 +17,7 @@ class Blurb(models.Model):
     comments = tinymce.models.HTMLField(blank=True,
         help_text='If you have any special comments or requests, mention them here. (This will not be included in the pipeline.)'
     )
-    author = models.CharField(max_length=50, blank=True)
+    name = models.CharField(max_length=50, blank=True)
     email = models.EmailField(blank=True)
     date_submitted = models.DateTimeField(auto_now_add=True)
     run_until = models.DateField()
@@ -33,7 +33,7 @@ class Blurb(models.Model):
 
     def contact_info(self):
         return '%s <<a href="mailto:%s">%s</a>>' % (
-            self.author, self.email, self.email
+            self.name, self.email, self.email
         )
     contact_info.allow_tags = True
     contact_info.short_description = 'Submitted by'

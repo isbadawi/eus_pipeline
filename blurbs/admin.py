@@ -8,14 +8,14 @@ class BlurbAdmin(admin.ModelAdmin):
     list_display = ['title', 'contact_info', 'date_submitted', 
         'run_until', 'approved']
     list_filter = ['approved']
-    readonly_fields = ['author', 'email']
+    readonly_fields = ['name', 'email']
     search_fields = ['title']
     fieldsets = [
         ('Blurb', {
             'fields': ['title', 'body', 'run_until', 'comments']
         }),
         ('Contact information', {
-            'fields': ['author', 'email']
+            'fields': ['name', 'email']
         }),
         ('Decision', {
             'fields': ['approved']
