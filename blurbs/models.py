@@ -1,5 +1,6 @@
 from django.db import models
 import tinymce.models
+import datetime
 
 class BlurbManager(models.Manager):
     def active(self):
@@ -10,8 +11,9 @@ class BlurbManager(models.Manager):
 class Blurb(models.Model):
     title = models.CharField(max_length=50)
     body = tinymce.models.HTMLField()
-    author = models.CharField(max_length=50)
-    email = models.EmailField()
+    comments = tinymce.models.HTMLField(blank=True)
+    author = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(blank=True)
     run_until = models.DateField()
     approved = models.BooleanField(default=False)
 
@@ -20,5 +22,9 @@ class Blurb(models.Model):
     def __unicode__(self):
         return self.title
 
-    def active(self):
-        return self.run_until >= datetime.date.today()
+    def contact_info(self):
+        return '%s <<a href="mailto:%s">%s</a>>' % (
+            self.author, self.email, self.email
+        )
+    contact_info.allow_tags = True
+    contact_info.short_description = 'Submitted by'

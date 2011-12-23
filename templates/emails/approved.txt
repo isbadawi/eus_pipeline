@@ -1,0 +1,6 @@
+Hi,
+
+Your blurb, "{{ blurb.title }}", was approved and will appear in the EUS
+pipeline until {{ blurb.run_until }}. Thank you for using the pipeline.
+
+This is an automated notification. Do not reply to this email.
