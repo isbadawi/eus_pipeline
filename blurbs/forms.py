@@ -22,10 +22,6 @@ class BlurbForm(BetterModelForm):
               'fields': ['title', 'body', 'run_for', 'comments']
            }),
         ] 
-        row_attrs = {
-            'name': {'class': 'horizontal'},
-            'email': {'class': 'horizontal'},
-        }
 
     def save(self, commit=True):
         m = super(BlurbForm, self).save(commit=False)

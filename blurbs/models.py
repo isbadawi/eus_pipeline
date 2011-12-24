@@ -14,7 +14,7 @@ class Blurb(models.Model):
     body = tinymce.models.HTMLField(validators=[validate_wordcount],
         help_text='At most 250 words.'
     )
-    comments = tinymce.models.HTMLField(blank=True,
+    comments = models.TextField(blank=True,
         help_text='If you have any special comments or requests, mention them here. (This will not be included in the pipeline.)'
     )
     name = models.CharField(max_length=50, blank=True)

@@ -17,17 +17,27 @@
     {% if field.is_hidden %}
         {{ field }}
     {% else %}
+        {% if forloop.parentloop.first %}
+        <div style="float: left;">
+        {% endif %}
         <li{{ field.row_attrs }}>
             {{ field.errors }}
-            {{ field.label_tag }}
-            <div class="help-text">{{ field.help_text }}</div>
+            {{ field.label_tag }} <br/>
+            {% if field.help_text %}
+                <div class="help-text">{{ field.help_text }}</div>
+            {% endif %}
             {{ field }}
         </li>
+        {% if forloop.parentloop.first %}
+        </div>
+        {% endif %}
     {% endif %}
     {% endfor %}
   </ul>
+  {% if forloop.last %}
+    <input type="submit" value="Submit blurb"/>
+  {% endif %}
   </fieldset>
 {% endfor %}
-<input type="submit" value="Submit blurb"/>
 </form>
 {% endblock %}
