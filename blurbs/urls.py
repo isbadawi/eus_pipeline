@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 from blurbs.forms import BlurbForm
+from blurbs.views import PipelineView
 
 urlpatterns = patterns('',
     url(r'^submit/$', CreateView.as_view(
@@ -12,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^submitted/$', TemplateView.as_view(
         template_name='blurbs/submitted.html'
     ), name='submitted'), 
+    url(r'^generate/$', PipelineView.as_view(), name='generate'),
 )

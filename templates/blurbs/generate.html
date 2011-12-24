@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blurbs.css"/>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+
+<script type="text/javascript">
+function new_category(name) {
+    var cat = $('<div class="category">');
+    var header = $('<div class="category-header">');
+    header.html(name);
+    var list = $('<div class="category-list">');
+    list.sortable({
+        connectWith: '#blurb-list, div.category-list'
+    });
+    cat.append(header);
+    cat.append(list);
+    $('#pipeline').append(cat);
+}
+$(function() {
+    $('#pipeline').sortable();
+    $('#blurb-list').sortable({
+        connectWith: 'div.category-list'
+    });
+    $('#new-category').click(function() {
+        new_category(prompt('Category name', ''));
+    });
+    $('div.blurb').click(function() {
+        $('div.blurb-display:not(.hidden)').addClass('hidden');
+        $('#blurb-' + $(this).attr('id')).removeClass('hidden');
+    });
+});
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div id="blurb-list">
+    <h2>Approved blurbs</h2>
+    {% for blurb in blurbs %}
+    <div id="{{ blurb.id }}" class="blurb">{{ blurb.title }}</div>
+    {% endfor %}
+</div>
+
+<div id="pipeline">
+    <h2>Pipeline Contents
+    <button id="new-category">New category</button>
+    </h2>
+</div>
+
+{% for blurb in blurbs %}
+    <div class="blurb-display hidden" id="blurb-{{ blurb.id }}">{{ blurb.body|safe }}</div>
+{% endfor %}
+
+{% endblock %}

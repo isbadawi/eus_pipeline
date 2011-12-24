@@ -1,0 +1,59 @@
+#pipeline {
+    background-color: gray;
+    width: 400px;
+    height: auto;
+    float: left;
+    margin-left: 10px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+div.category {
+    margin-left: 10px;
+    width: 300px;
+    padding-bottom: 10px;
+}
+
+div.category-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: red;
+    font-size: 0.8em;
+    color: white;
+}
+
+div.category-list {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: #e8e3e3;
+    min-height: 10px;
+}
+
+div#blurb-list {
+    border-radius: 5px;
+    padding-left: 10px;
+    float: left;
+    background-color: pink;
+    width: 300px;
+}
+ 
+div.blurb {
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+    border-color: white;
+    border: solid;
+    border-width: 1px;
+    color: white;
+    background-color: red;
+}
+
+div.blurb-display {
+    margin-left: 10px;
+    float: left;
+    background-color: #e8e3e3;
+    border-radius: 5px;
+    border-color: black;
+    border: solid;
+}
+                      
