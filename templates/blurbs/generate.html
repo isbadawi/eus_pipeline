@@ -18,6 +18,22 @@ function new_category(name) {
     cat.append(list);
     $('#pipeline').append(cat);
 }
+
+function get_pipeline() {
+    var headers = [];
+    $('#pipeline .category').each(function() {
+        var blurbs = [];
+        $(this).find('.blurb').each(function() {
+            blurbs.push(parseInt($(this).attr('id')));
+        });
+        headers.push({
+            'title': $(this).find('.category-header').html(),
+            'blurbs': blurbs
+        });
+    });
+    return JSON.stringify(headers);
+}
+
 $(function() {
     $('#pipeline').sortable();
     $('#blurb-list').sortable({
@@ -29,6 +45,13 @@ $(function() {
     $('div.blurb').click(function() {
         $('div.blurb-display:not(.hidden)').addClass('hidden');
         $('#blurb-' + $(this).attr('id')).removeClass('hidden');
+    });
+    $('#generate').submit(function() {
+        var input = $('<input>');
+        input.attr('type', 'hidden');
+        input.attr('name', 'pipeline');
+        input.attr('value', get_pipeline());
+        $(this).append(input);
     });
 });
 </script>
@@ -52,5 +75,10 @@ $(function() {
 {% for blurb in blurbs %}
     <div class="blurb-display hidden" id="blurb-{{ blurb.id }}">{{ blurb.body|safe }}</div>
 {% endfor %}
+
+<form id="generate" action="" method="post">
+{% csrf_token %}
+<input type="submit" value="Generate pipeline!"/>
+</form>
 
 {% endblock %}

@@ -1,0 +1,212 @@
+{% load filters %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />	
+		<title>EUS Pipeline</title>
+		<!--general stylesheet-->
+		<style type="text/css">
+			p { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; padding: 0; margin: 0; }
+			h1, h2, h3, p, li { font-family: Helvetica Neue, Helvetica, Arial, sans-serif; }
+			td { vertical-align:top;}
+			ul, ol { margin: 0; padding: 0;}
+			.heading {
+				border-radius: 3px;
+				-webkit-border-radius: 3px;
+				-moz-border-radius: 3px;
+				-khtml-border-radius: 3px;
+				-icab-border-radius: 3px;
+			}
+		</style>
+	</head>
+	<body marginheight="0" topmargin="0" marginwidth="0" leftmargin="0" background="" style="margin: 0px; background-color: #ffffff;" bgcolor="#ffffff">
+		<table cellspacing="0" border="0" cellpadding="0" width="100%">
+			<tbody>
+				<tr valign="top">
+					<td><!--container-->
+						<table cellspacing="0" cellpadding="0" border="0" align="center" width="750" bgcolor="#ffffff">
+							<tbody>
+								<tr>
+									<td valign="top" bgcolor="#ffffff" align="center">
+										<table cellspacing="0" border="0" cellpadding="0" width="700">
+											<tbody>
+												<tr>
+													<td colspan="2" valign="top" height="37" style="height: 37px;">&nbsp;</td>
+												</tr>
+												<!--PIPELINE TITLE-->
+												<tr>
+													<td>
+														<h1 align="center" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0; padding: 0; font-size: 63px; color: #fd2323; font-weight: bold;">
+															EUS PIPELINE
+														</h1>
+														<h2 align="center" class="date" style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0; padding: 0; font-size: 16px; font-weight: bold; color: #bababa;">
+															>> Engineering Undergraduate Society (EUS) Newsletter
+														</h2>
+													</td>
+													<td>
+														<img align="left" src="http://images.mcgilleus.ca/pipeline.mcgilleus.ca/eusStar.png">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" bgcolor="#ffffff" align="center">
+                                        <table cellspacing="0" border="0" cellpadding="0" width="700">
+                                            <tbody>
+ 												<!--SPACER-->
+												<tr>
+													<td colspan="2" valign="top" style="height: 5px;">&nbsp;</td>
+												</tr>
+												<tr>
+													<td colspan="2" valign="top" style="text-align: left;">
+														<table cellspacing="0" cellpadding="0" border="0" width="700">
+															<tbody>
+																<tr>
+                                                                {% for title in sidebar_entries %}
+																	<td style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0; padding: 10px; border-top-color: #d6d6d6; border-top-width: 1px; border-top-style: solid; border-bottom-color: #d6d6d6; border-bottom-width: 1px; border-bottom-style: solid; margin-left: 15px; margin-right: 12px; font-size:16px; font-weight: bold; text-align: center; width: 140px; height: 20px; vertical-align: middle;" valign="middle" bgcolor="#ffffff">
+																		<a style="color: #8a8a8a; text-decoration: none;" href="#{{ title.letter }}">{{ title.title }}</a>
+																	</td>
+                                                                {% endfor %}  
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+												<!--SPACER-->
+												<tr>
+													<td colspan="2" valign="top" style="height: 33px;">&nbsp;</td>
+												</tr>
+												<!--LEFT SIDEBAR-->
+												<tr>
+													<td valign="top">
+														<table cellspacing="0" border="0" cellpadding="0" width="250" align="left">
+															<tbody>
+																<!--TABLE OF CONTENTS-->
+																<tr>
+																	<td class="heading" valign="middle" height="37" bgcolor="#8a8a8a" style="height: 37px; vertical-align: middle;">
+																		<h2 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0; padding: 0; margin-left: 15px; margin-right: 12px; font-size:16px; font-weight: bold; color: #ffffff; text-align: left;">
+																			In this Issue
+																		</h2>
+																	</td>
+																</tr>
+																<tr>
+																	<td valign="top">
+																		<table cellspacing="0" border="0" cellpadding="0" width="250" align="left" style="border-color: #ffffff; border-width: 14px; border-style: solid; text-align: left;">
+																			<tbody>
+																				<!--LINKED CATEGORY TITLE #1-->
+                                                                                {% for category in sidebar_entries %}
+																				<tr>
+																					<td style="font-size: 22px; color: #8a8a8a; padding-bottom:3px; padding-top: 15px; padding-bottom: 12px; text-align: left; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; height: 30px; margin-top: 10px;" valign="top" colspan="2">
+																						<a name="{{ category.letter }}"></a>>> {{ category.title }}
+																					</td>
+																				</tr>
+                                                                                {% for entry in category.entries %}
+																				<tr>
+																					<td valign="top" width="22" style="padding-bottom:5px; padding-top: 5px;">
+																						<span style="font-size: 14px; color: #c7c7c7; font-weight:bold; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+																							{{ entry.index|numberify }}
+																						</span>
+																					</td>
+																					<td valign="top" style="font-size: 14px; font-weight: bold; color: #fd2323; padding-bottom:5px; padding-top: 5px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+																						<a style="text-decoration: none; color: #ff0000;" href="#{{ entry.index }}">{{ entry.title }}</a>
+																					</td>
+                                                                                {% endfor %}
+																				</tr>
+                                                                                {% endfor %}
+																			</tbody>
+																		</table>
+																	</td>
+																</tr>
+																<!--SPACER BETWEEN TABLE OF CONTENTS-->
+																<tr>
+																	<td colspan="2" valign="top" style="height: 18px;">&nbsp;</td>
+																</tr>
+																<!--2ND TABLE OF CONTENTS FOR EVENTS-->
+																<tr>
+																	<td class="heading" valign="middle" height="37" bgcolor="#8a8a8a" style="height: 37px; vertical-align: middle;">
+																		<h2 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0; padding: 0; margin-left: 15px; margin-right: 12px; font-size:16px; font-weight: bold; color: #ffffff; text-align: left;">
+																			Up &amp; Coming Events
+																		</h2>
+																	</td>
+																</tr>
+																<!--TABLE OF CONTENTS-->
+																<tr>
+																	<td valign="top">
+																		<table cellspacing="0" border="0" cellpadding="0" width="250" align="left" style="border-color: #ffffff; border-width: 14px; border-style: solid; text-align: left;">
+																			<tbody>
+                                                                                {% for event in events %}
+																				<tr>
+																					<td valign="top" width="22" style="padding-bottom:5px; padding-top: 5px;">
+																						<span style="font-size: 14px; color: #c7c7c7; font-weight:bold; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+																							{{ event.index|numberify }}
+																						</span>
+																					</td>
+																					<td valign="top" style="font-size: 14px; font-weight: bold; color: #ff0000; padding-bottom:5px; padding-top: 5px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+																						{{ event.title }}
+																					</td>
+																					<tr>
+																						<td valign="top" width="22" style="padding-bottom: 3px; padding-top: 3px;"></td>
+																						<td style="font-size: 14px; font-weight: bold; color: #ff0000; padding-bottom: 10px; text-align: left; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;" valign="top">
+																							<p style="padding: 0; margin: 0; margin-top: 7px; margin-bottom: 5px; padding: 0; font-size: 13px; font-weight: normal; color: #535353; line-height: 22px; text-align: justify;" }>
+                                                                                                {% for line in event.lines %}
+                                                                                                {{ line }}
+                                                                                                {% if not forloop.last %}</br>{% endif %}
+                                                                                                {% endfor %}
+																							</p>
+																						</td>
+																					</tr>
+																				</tr>  
+                                                                                {% endfor %}
+																			</tbody>
+																		</table>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+													<td valign="top" width="417">
+														<table cellspacing="0" border="0" cellpadding="0" width="100%">
+                                                            {% for story in stories %}
+															<tr>
+																<td valign="middle" height="37" style="height: 37px; border-bottom-color: #d6d6d6; border-bottom-width: 1px; border-bottom-style: solid; vertical-align: middle;">
+																<a name="{{ story.index }}"></a>
+																	<h2 style="font-family: Helvetica Neue, Helvetica, Arial, sans-serif; margin: 0; padding: 0; font-size: 16px; font-weight: bold; color: #ff0000; text-align: left;">
+																    {{ story.title }}</h2>
+																</td>
+															</tr>
+															<tr>
+																<td valign="top">
+                                                                    {{ story.body|safe }}
+																</td>
+															</tr>
+                                                            {% if not forloop.last %}
+															<!--SPACER-->
+															<tr>
+																<td valign="top" height="40" style="height: 40px;">&nbsp;</td>
+															</tr>
+                                                            {% endif %}
+                                                            {% endfor %}
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td colspan="2" valign="middle" height="58" style="height: 58px; vertical-align: middle; border-top-color: #d6d6d6; border-top-width: 1px; border-top-style: solid;">
+														&nbsp;
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+									<!--/content-->
+								</tr>
+							</tbody>
+						</table><!--/container-->
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
