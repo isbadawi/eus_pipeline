@@ -16,7 +16,28 @@ function new_category(name) {
     });
     cat.append(header);
     cat.append(list);
+    cat.dblclick(function() {
+        $(this).find('div.blurb').each(function () {
+            $('#blurb-list').append($(this));
+        });
+        $(this).remove();
+    });
     $('#pipeline').append(cat);
+}
+
+function new_event(lines) {
+    var newevent = $('<div class="event">');
+    var title = $('<div class="event-title">');
+    title.html(lines[0]);
+    var content = $('<div class="event-description">');
+    content.html(lines.slice(1).join("<br/>"));
+    newevent.append(title);
+    newevent.append(content);
+    $('#events').append(newevent);
+    newevent.dblclick(function() {
+        $(this).remove();
+    });
+    $('#new-event').val('');  
 }
 
 function get_pipeline() {
@@ -31,11 +52,25 @@ function get_pipeline() {
             'blurbs': blurbs
         });
     });
-    return JSON.stringify(headers);
+    var events = [];
+    var index = 1;
+    $('#events .event').each(function() {
+        events.push({
+            'index': index,
+            'title': $(this).find('.event-title').html(),
+            'lines': $(this).find('.event-description').html().split("<br>")
+        });
+        index = index + 1;
+    });
+    return JSON.stringify({
+        'headers': headers,
+        'events': events
+    });
 }
 
 $(function() {
     $('#pipeline').sortable();
+    $('#events').sortable();
     $('#blurb-list').sortable({
         connectWith: 'div.category-list'
     });
@@ -54,6 +89,12 @@ $(function() {
         input.attr('name', 'pipeline');
         input.attr('value', get_pipeline());
         $(this).append(input);
+    });
+    $('#add-event').click(function() {
+        if ($('#new-event').val()) {
+            var lines = $('#new-event').val().split("\n");
+            new_event(lines);
+        }
     });
 });
 </script>
@@ -77,6 +118,14 @@ $(function() {
 {% for blurb in blurbs %}
     <div class="blurb-display hidden" id="blurb-{{ blurb.id }}">{{ blurb.body|safe }}</div>
 {% endfor %}
+
+<div id="events">
+    <h2>Events 
+    <button id="add-event">Add event</button>
+    </h2>
+    <textarea id="new-event"></textarea>
+</div>
+ 
 
 <form id="generate" action="" target="_blank" method="post">
 {% csrf_token %}

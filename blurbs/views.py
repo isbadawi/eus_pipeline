@@ -17,7 +17,8 @@ class PipelineView(TemplateView):
         return blurb
 
     def post(self, request, *args, **kwargs):
-        headers = json.loads(request.POST.get('pipeline'))
+        pipeline = json.loads(request.POST.get('pipeline', ''))
+        headers = pipeline['headers']
         ids = sum([h['blurbs'] for h in headers], [])
         blurbs = Blurb.objects.in_bulk(ids)
         index = 1
@@ -38,6 +39,7 @@ class PipelineView(TemplateView):
         } for i, blurb in enumerate(blurbs, 1)]
         return render(request, 'pipeline.html', {
             'sidebar_entries': headers,
-            'stories': blurbs
+            'stories': blurbs,
+            'events': pipeline['events']
         })
 
