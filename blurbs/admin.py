@@ -1,10 +1,14 @@
-from blurbs.models import Blurb
+from blurbs.models import Blurb, Document
 from blurbs.utils import send_email
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.sites.models import Site
 
+class DocumentInline(admin.TabularInline):
+    model = Document
+
 class BlurbAdmin(admin.ModelAdmin):
+    inlines = [DocumentInline]
     list_display = ['title', 'contact_info', 'date_submitted', 
         'run_until', 'approved']
     list_filter = ['approved']

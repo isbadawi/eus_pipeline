@@ -1,7 +1,38 @@
 import json
+from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
-from blurbs.models import Blurb
+from django.views.generic.edit import CreateView
 from django.shortcuts import render
+from blurbs.models import Blurb
+from blurbs.forms import BlurbForm
+from blurbs.forms import DocumentFormSet
+
+class CreateBlurbView(CreateView):
+    template_name = 'blurbs/submit.html'
+    form_class = BlurbForm
+    success_url = '/blurbs/submitted/'
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateBlurbView, self).get_context_data(**kwargs)
+        if self.request.POST:
+            context['document_formset'] = DocumentFormSet(self.request.POST, self.request.FILES, instance=self.object)
+        else:
+            context['document_formset'] = DocumentFormSet(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        document_form = context['document_formset']
+        if document_form.is_valid():
+            self.object = form.save()
+            document_form.instance = self.object
+            document_form.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form))
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
 
 class PipelineView(TemplateView):
     template_name = 'blurbs/generate.html'

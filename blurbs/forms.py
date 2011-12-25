@@ -1,6 +1,7 @@
 from form_utils.forms import BetterModelForm
 from django import forms
-from blurbs.models import Blurb
+from django.forms.models import inlineformset_factory
+from blurbs.models import Blurb, Document
 import datetime
 
 class BlurbForm(BetterModelForm):
@@ -32,3 +33,4 @@ class BlurbForm(BetterModelForm):
             m.save()
         return m
 
+DocumentFormSet = inlineformset_factory(Blurb, Document, extra=2, can_delete=False)

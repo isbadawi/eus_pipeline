@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-<form action="" method="post">
+<form enctype="multipart/form-data" action="" method="post">
 {% csrf_token %}
 {% for fieldset in form.fieldsets %}
     <fieldset class="{{ fieldset.classes }}">
@@ -33,11 +33,20 @@
         {% endif %}
     {% endif %}
     {% endfor %}
-  </ul>
   {% if forloop.last %}
-    <input type="submit" value="Submit blurb"/>
+     <li>Attachments <br/>
+     {{ document_formset.management_form }}
+     {% for document_form in document_formset %}
+     <ul>
+     {{ document_form.as_ul }}
+     </ul>
+     {% endfor %}    
+     </li>
+     <input type="submit" value="Submit blurb"/>
   {% endif %}
+  </ul>
   </fieldset>
 {% endfor %}
+
 </form>
 {% endblock %}

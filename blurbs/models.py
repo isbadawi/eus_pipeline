@@ -6,7 +6,8 @@ from blurbs.validators import validate_wordcount
 class BlurbManager(models.Manager):
     def active(self):
         return self.get_query_set().filter(
-            run_until__gte=datetime.date.today()
+            run_until__gte=datetime.date.today(),
+            approved=True,
         )
 
 class Blurb(models.Model):
@@ -37,3 +38,8 @@ class Blurb(models.Model):
         )
     contact_info.allow_tags = True
     contact_info.short_description = 'Submitted by'
+
+class Document(models.Model):
+    blurb = models.ForeignKey(Blurb)
+    title = models.CharField(max_length=50)
+    data = models.FileField(upload_to='documents')
