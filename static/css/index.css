@@ -40,8 +40,7 @@ fieldset {
     padding-bottom: 0;
     margin-bottom: 10px;
     width: 800px;
-    border-radius: 10px;
-    border-color: black;
+    border-color: #e8e3e3;
 }
 
 legend {
@@ -68,7 +67,6 @@ fieldset li {
 input[type="text"] {
     font-size: 1.2em;
     width: 350px;
-    border-radius: 10px;
     border-color: #e8e3e3;
     border-width: 1px;
     padding: 0.5em;

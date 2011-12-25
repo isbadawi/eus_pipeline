@@ -38,7 +38,10 @@
      {{ document_formset.management_form }}
      {% for document_form in document_formset %}
      <ul>
-     {{ document_form.as_ul }}
+     <li>What is it? <br/>
+     {{ document_form.title }}
+     </li>
+     <li>{{ document_form.data }}</li>
      </ul>
      {% endfor %}    
      </li>
