@@ -76,6 +76,10 @@ textarea {
     width: 400px;
 }
 
+#id_comments {
+    height: 100px;
+}
+
 .hidden {
     display: none;
 }
