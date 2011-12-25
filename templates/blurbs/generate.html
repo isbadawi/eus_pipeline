@@ -40,7 +40,9 @@ $(function() {
         connectWith: 'div.category-list'
     });
     $('#new-category').click(function() {
-        new_category(prompt('Category name', ''));
+        var name = prompt('Category name', '');
+        if (name)
+            new_category(name);
     });
     $('div.blurb').click(function() {
         $('div.blurb-display:not(.hidden)').addClass('hidden');
@@ -76,7 +78,7 @@ $(function() {
     <div class="blurb-display hidden" id="blurb-{{ blurb.id }}">{{ blurb.body|safe }}</div>
 {% endfor %}
 
-<form id="generate" action="" method="post">
+<form id="generate" action="" target="_blank" method="post">
 {% csrf_token %}
 <input type="submit" value="Generate pipeline!"/>
 </form>

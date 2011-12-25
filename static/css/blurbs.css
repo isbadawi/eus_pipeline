@@ -68,4 +68,8 @@ div.blurb-display {
     border-color: black;
     border: solid;
 }
+
+#generate {
+    clear: left;
+}
                       
