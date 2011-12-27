@@ -6,14 +6,14 @@ from django.contrib.sites.models import Site
 
 class DocumentInline(admin.TabularInline):
     model = Document
-    readonly_fields = ['title', 'data']
+    readonly_fields = ['title']
 
 class BlurbAdmin(admin.ModelAdmin):
     inlines = [DocumentInline]
     list_display = ['title', 'contact_info', 'date_submitted', 
         'run_until', 'approved']
-    list_filter = ['approved']
-    readonly_fields = ['name', 'email', 'comments', 'approved']
+    list_filter = ['approved', 'run_until']
+    readonly_fields = ['comments', 'approved']
     search_fields = ['title']
     fieldsets = [
         ('Blurb', {

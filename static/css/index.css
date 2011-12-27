@@ -35,7 +35,7 @@ html, body {
     width: 400px;
 }
 
-fieldset {
+#submit-blurb fieldset {
     padding-top: 0;
     padding-bottom: 0;
     margin-bottom: 10px;
@@ -43,28 +43,28 @@ fieldset {
     border-color: #e8e3e3;
 }
 
-legend {
+#submit-blurb legend {
     padding: 0 2px;
 }
 
-label {
+#submit-blurb label {
     display: inline-block;
     line-height: 1.8;
     vertical-align: top;
 }
 
-fieldset ul {
+#submit-blurb fieldset ul {
     margin: 0;
     padding: 0;
 }
 
-fieldset li {
+#submit-blurb fieldset li {
     list-style: none;
     padding: 5px;
     margin: 0;
 }
 
-input[type="text"] {
+#submit-blurb input[type="text"] {
     font-size: 1.2em;
     width: 350px;
     border-color: #e8e3e3;
@@ -72,7 +72,7 @@ input[type="text"] {
     padding: 0.5em;
 }
 
-textarea {
+#submit-blurb textarea {
     width: 400px;
 }
 

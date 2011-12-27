@@ -1,4 +1,5 @@
 import json
+import datetime
 from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
@@ -45,6 +46,7 @@ class PipelineView(TemplateView):
     def _prepare(self, blurb):
         blurb = blurb.replace('<p>', '<p style="margin: 0; margin-top: 3px; margin-bottom: 10px; padding: 0; font-size: 13px; font-weight: normal; color: #535353; line-height: 22px; text-align: justify;">')
         blurb = blurb.replace('<a ', '<a style="color: #ff0000" ')
+        blurb = blurb.replace('<ul>', '<ul style="margin:0;margin-top:3px;margin-bottom:10px;padding:0;font-size:13px;font-weight:normal;color:#535353;line-height:22px;text-align:left;padding-left:20px">')
         return blurb
 
     def post(self, request, *args, **kwargs):
@@ -68,9 +70,13 @@ class PipelineView(TemplateView):
             'title': blurb.title,
             'body': self._prepare(blurb.body) 
         } for i, blurb in enumerate(blurbs, 1)]
-        return render(request, 'pipeline.html', {
+        response = render(request, 'pipeline.html', {
             'sidebar_entries': headers,
             'stories': blurbs,
             'events': pipeline['events']
         })
+        if request.POST.get('download', ''):
+            filename = 'Pipeline%s.html' % datetime.date.today().strftime('%Y-%m-%d')
+            response['Content-Disposition'] = 'attachment; filename=%s' % filename
+        return response
 

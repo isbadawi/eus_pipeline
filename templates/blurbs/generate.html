@@ -14,6 +14,24 @@ function new_category(name) {
     list.sortable({
         connectWith: '#blurb-list, div.category-list'
     });
+    header.click(function() {
+        if ($(this).find('button').length)
+            return;
+        var ok = $('<button>Ok</button>');
+        var input = $('<input type="text" value="' + $(this).html() + '"/>');
+       
+        var that = $(this);
+        input.click(function() {
+            return false;
+        }); 
+        ok.click(function() {
+            that.html(input.val());
+            return false;
+        }); 
+        $(this).html('');
+        $(this).append(input);
+        $(this).append(ok);
+    });
     cat.append(header);
     cat.append(list);
     cat.dblclick(function() {
@@ -83,7 +101,7 @@ $(function() {
         $('div.blurb-display:not(.hidden)').addClass('hidden');
         $('#blurb-' + $(this).attr('id')).removeClass('hidden');
     });
-    $('#generate').submit(function() {
+    $('#preview, #download').submit(function() {
         var input = $('<input>');
         input.attr('type', 'hidden');
         input.attr('name', 'pipeline');
@@ -127,9 +145,15 @@ $(function() {
 </div>
  
 
-<form id="generate" action="" target="_blank" method="post">
+<form id="preview" action="" target="_blank" method="post">
 {% csrf_token %}
-<input type="submit" value="Generate pipeline!"/>
+<input type="submit" value="Preview"/>
+</form>
+
+<form id="download" action="" method="post">
+{% csrf_token %}
+<input type="hidden" name="download" value="1"/>
+<input type="submit" value="Download"/>
 </form>
 
 {% endblock %}
