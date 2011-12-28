@@ -1,0 +1,12 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'EUS Pipeline' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans 'EUS Pipeline administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}
+<a style="float: right; margin: 10px; margin-top: 0;" href="{% url generate %}">Generate a pipeline</a>
+{% endblock %}
