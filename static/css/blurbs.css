@@ -86,6 +86,7 @@ div#blurb-list {
     padding-bottom: 10px;
     margin-bottom: 10px;
     padding-left: 10px;
+    padding-right: 10px;
     float: left;
     background-color: #f9ccca;
     width: 300px;
@@ -94,7 +95,6 @@ div#blurb-list {
  
 div.blurb {
     padding: 10px;
-    margin-right: 10px;
     border-radius: 5px;
     border-color: white;
     border: solid;
