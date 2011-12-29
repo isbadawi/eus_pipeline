@@ -33,4 +33,4 @@ class BlurbForm(BetterModelForm):
             m.save()
         return m
 
-DocumentFormSet = inlineformset_factory(Blurb, Document, extra=2, can_delete=False)
+DocumentFormSet = inlineformset_factory(Blurb, Document, extra=0, can_delete=False)

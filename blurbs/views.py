@@ -47,6 +47,7 @@ class PipelineView(TemplateView):
         blurb = blurb.replace('<p>', '<p style="margin: 0; margin-top: 3px; margin-bottom: 10px; padding: 0; font-size: 13px; font-weight: normal; color: #535353; line-height: 22px; text-align: justify;">')
         blurb = blurb.replace('<a ', '<a style="color: #ff0000" ')
         blurb = blurb.replace('<ul>', '<ul style="margin:0;margin-top:3px;margin-bottom:10px;padding:0;font-size:13px;font-weight:normal;color:#535353;line-height:22px;text-align:left;padding-left:20px">')
+        blurb = blurb.replace('<ol>', '<ol style="margin:0;margin-top:3px;margin-bottom:10px;padding:0;font-size:13px;font-weight:normal;color:#535353;line-height:22px;text-align:left;padding-left:20px">')
         return blurb
 
     def post(self, request, *args, **kwargs):
