@@ -12,7 +12,7 @@ class BlurbManager(models.Manager):
 
 class Blurb(models.Model):
     title = models.CharField(max_length=50)
-    body = tinymce.models.HTMLField(validators=[validate_wordcount],
+    body = tinymce.models.HTMLField(validators=[validate_wordcount(250)],
         help_text='At most 250 words. Note that this might be edited.'
     )
     comments = models.TextField(blank=True,

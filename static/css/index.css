@@ -83,3 +83,8 @@ html, body {
 .hidden {
     display: none;
 }
+
+ul.errorlist li {
+    color: red;
+}
+                      
