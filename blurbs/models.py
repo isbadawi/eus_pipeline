@@ -45,3 +45,35 @@ class Document(models.Model):
     blurb = models.ForeignKey(Blurb)
     title = models.CharField(max_length=50)
     data = DeletingFileField(upload_to='documents')
+
+    def __unicode__(self):
+        return self.title
+
+class Email(models.Model):
+    label = models.CharField(max_length=50)
+    body = models.TextField(help_text="""<p>
+    You can pretty much use arbitrary HTML here. In addition, you have
+    access to a special variable called "blurb", which holds information
+    related to the blurb under consideration. In particular, you can write:
+    </p>
+    <ul>
+    <li>{{ blurb.title }} to get the blurb's title</li>
+    <li>{{ blurb.body|safe }} to get the text of the blurb</li>
+    <li>{{ blurb.run_until }} to get the date until which the blurb will
+    run. The default format is "AP-style month dd, yyyy" 
+    (e.g. Feb. 14, 2012); this can be adjusted by writing 
+    {{ blurb.run_until|date:'format' }} with a special format string, which
+    is documented <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date">here</a>. 
+    For instance, a dd/mm/yyyy format corresponds to
+    {{ blurb.run_until|date:'d/m/Y' }}. (The default format corresponds to
+    {{ blurb.run_until|date:'N j, Y' }}).</li>
+    <li>{{ blurb.date_submitted }} to get the date the blurb was submitted
+    (the date format comments apply here too).</li>
+    <li>{{ blurb.name }} and {{ blurb.email }} to get the submitter's
+    contact info. Note that since this is optional, these may be empty.</li>
+    <li>{{ blurb.comments }} to get the comments associated with the
+    submission. This might also be empty.</li>
+    </ul>""")
+
+    def __unicode__(self):
+        return self.label

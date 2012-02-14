@@ -1,4 +1,4 @@
-from blurbs.models import Blurb, Document
+from blurbs.models import Blurb, Document, Email
 from blurbs.utils import send_email
 from django.contrib import admin
 from django.contrib.auth.models import Group
@@ -33,7 +33,7 @@ class BlurbAdmin(admin.ModelAdmin):
         msg = '%s blurb%s' % (rows, 's' if rows > 1 else '')
         self.message_user(request, '%s successfully approved.' % msg)
         for blurb in [b for b in queryset if b.email]:
-            send_email('Blurb approved', 'approved.html', blurb.email, blurb=blurb)
+            send_email('Blurb approved', 'Approval', blurb.email, blurb=blurb)
     approve.short_description = 'Approve selected blurbs'
 
     def reject(self, request, queryset):
@@ -41,10 +41,21 @@ class BlurbAdmin(admin.ModelAdmin):
         msg = '%s blurb%s' % (rows, 's' if rows > 1 else '')
         self.message_user(request, '%s successfully rejected.' % msg)
         for blurb in [b for b in queryset if b.email]:
-            send_email('Blurb rejected', 'rejected.html', blurb.email, blurb=blurb)
+            send_email('Blurb rejected', 'Rejection', blurb.email, blurb=blurb)
         queryset.delete()
     reject.short_description = 'Reject (and delete) selected blurbs'
+
+class EmailAdmin(admin.ModelAdmin):
+    fields = ('body',)
+    actions = None
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 admin.site.unregister(Group)
 admin.site.unregister(Site)
 admin.site.register(Blurb, BlurbAdmin)
+admin.site.register(Email, EmailAdmin)
