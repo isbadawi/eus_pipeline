@@ -1,7 +1,9 @@
 from django.db import models
+from django.db.models.signals import post_delete
 import tinymce.models
 import datetime
 from blurbs.validators import validate_wordcount
+from blurbs.fields import DeletingFileField
 
 class BlurbManager(models.Manager):
     def active(self):
@@ -42,4 +44,4 @@ class Blurb(models.Model):
 class Document(models.Model):
     blurb = models.ForeignKey(Blurb)
     title = models.CharField(max_length=50)
-    data = models.FileField(upload_to='documents')
+    data = DeletingFileField(upload_to='documents')
