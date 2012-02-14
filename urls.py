@@ -5,9 +5,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^blurbs/', include('blurbs.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^', include('blurbs.urls')),
 )
-
-urlpatterns += staticfiles_urlpatterns()

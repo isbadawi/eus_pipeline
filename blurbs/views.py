@@ -11,7 +11,7 @@ from blurbs.forms import DocumentFormSet
 class CreateBlurbView(CreateView):
     template_name = 'blurbs/submit.html'
     form_class = BlurbForm
-    success_url = '/blurbs/submitted/'
+    success_url = '/submitted/'
 
     def get_context_data(self, **kwargs):
         context = super(CreateBlurbView, self).get_context_data(**kwargs)
