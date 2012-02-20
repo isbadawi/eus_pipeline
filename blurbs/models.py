@@ -51,11 +51,10 @@ class Document(models.Model):
 
 class Email(models.Model):
     label = models.CharField(max_length=50)
-    body = models.TextField(help_text="""<p>
-    You can pretty much use arbitrary HTML here. In addition, you have
-    access to a special variable called "blurb", which holds information
-    related to the blurb under consideration. In particular, you can write:
-    </p>
+    body = tinymce.models.HTMLField(help_text="""
+    <p>To incorporate information about the blurb in question, you have
+    access to a special variable called {{ blurb }}. In particular, you
+    may write:</p>
     <ul>
     <li>{{ blurb.title }} to get the blurb's title</li>
     <li>{{ blurb.body|safe }} to get the text of the blurb</li>
@@ -71,9 +70,12 @@ class Email(models.Model):
     (the date format comments apply here too).</li>
     <li>{{ blurb.name }} and {{ blurb.email }} to get the submitter's
     contact info. Note that since this is optional, these may be empty.</li>
-    <li>{{ blurb.comments }} to get the comments associated with the
-    submission. This might also be empty.</li>
-    </ul>""")
+    </ul>
+    <p>If this is a rejection email, you also have access to a variable
+    called {{ reason }} which holds a short description of the rejection
+    reason (again, potentially empty). You can check for this with
+    {% if reason %} --- {% else %} --- {% endif %}.</p>
+    """)
 
     def __unicode__(self):
         return self.label
