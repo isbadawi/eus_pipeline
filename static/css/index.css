@@ -3,18 +3,21 @@ html, body {
     padding: 0;
     font-family: 'Trebuchet MS', serif;
     background: white;
-    color: black;
+    color: #585858;
 }
 
 #page-container {
     margin: auto;
 }
 
+img {
+    float: right;
+}
+
 #header {
     height: auto;
-    background-color: red;
-    color: white;
-    border-bottom: 1px solid black;
+    color: #e83c3b;
+/*    border-bottom: 1px solid black; */
     font-size: 1.2em;
 }
 
@@ -30,7 +33,7 @@ html, body {
 }
 
 .help-text {
-    color: gray;
+    color: #757574;
     font-size: 0.75em;
     width: 400px;
 }
@@ -40,7 +43,9 @@ html, body {
     padding-bottom: 0;
     margin-bottom: 10px;
     width: 800px;
-    border-color: #e8e3e3;
+ /*   border-color: #e83c3b; */
+    border-color: white;
+    color: #e83c3b;
 }
 
 #submit-blurb legend {
