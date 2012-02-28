@@ -91,10 +91,6 @@ $(function() {
         if (name)
             pipeline.new_category(name);
     });
-    $('div.blurb').click(function() {
-        $('div.blurb-display:not(.hidden)').addClass('hidden');
-        $('#blurb-' + $(this).attr('id')).removeClass('hidden');
-    });
     $('#preview, #download').submit(function() {
         var input = $('<input>');
         input.attr('type', 'hidden');

@@ -22,17 +22,12 @@
     </h2>
 </div>
 
-{% for blurb in blurbs %}
-    <div class="blurb-display hidden" id="blurb-{{ blurb.id }}">{{ blurb.body|safe }}</div>
-{% endfor %}
-
 <div id="events">
     <h2>Events 
     <button id="add-event">Add event</button>
     </h2>
     <textarea id="new-event"></textarea>
 </div>
- 
 
 <form id="preview" action="" target="_blank" method="post">
 {% csrf_token %}

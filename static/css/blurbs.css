@@ -2,8 +2,9 @@
     background-color: #b0e0e6;
     width: 300px;
     height: auto;
-    clear: left;
-    margin-top: 10px;
+   /* clear: left; */
+    float: left;
+    margin-left: 10px;
     padding-left: 10px;
     padding-bottom: 10px;
     border-radius: 5px;
@@ -87,7 +88,8 @@ div#blurb-list {
     margin-bottom: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    float: left;
+    clear: left;
+    float :left;
     background-color: #f9ccca;
     width: 300px;
     color: white;
