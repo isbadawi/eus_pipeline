@@ -7,13 +7,26 @@ html, body {
     color: #585858;
 }
 
+a {
+    color: #e83c3b;
+}
+
 #page-container {
     margin: auto;
 }
 
-img {
+#sidebar {
     float: left;
+    width: 300px;
+}
+
+img {
+    clear: left;
     padding: 10px;
+}
+
+#guidelines {
+    float: left;
 }
 
 #header {
@@ -36,6 +49,12 @@ img {
     color: #757574;
     font-size: 0.75em;
     width: 400px;
+}
+
+#submit-blurb {
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #submit-blurb fieldset {
