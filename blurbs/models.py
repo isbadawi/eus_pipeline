@@ -41,6 +41,9 @@ class Blurb(models.Model):
     contact_info.allow_tags = True
     contact_info.short_description = 'Submitted by'
 
+    def run_for(self):
+        return (self.run_until - self.date_submitted.date()).days / 7 + 1
+
 class Document(models.Model):
     blurb = models.ForeignKey(Blurb)
     title = models.CharField(max_length=50)
@@ -66,6 +69,8 @@ class Email(models.Model):
     For instance, a dd/mm/yyyy format corresponds to
     {{ blurb.run_until|date:'d/m/Y' }}. (The default format corresponds to
     {{ blurb.run_until|date:'N j, Y' }}).</li>
+    <li>{{ blurb.run_for }}</li> to get the number of weeks (as an integer)
+    to blurb will run for.</li>
     <li>{{ blurb.date_submitted }} to get the date the blurb was submitted
     (the date format comments apply here too).</li>
     <li>{{ blurb.name }} and {{ blurb.email }} to get the submitter's
