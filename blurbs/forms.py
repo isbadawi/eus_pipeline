@@ -28,7 +28,7 @@ class BlurbForm(BetterModelForm):
         m = super(BlurbForm, self).save(commit=False)
         d = datetime.date.today()
         sunday = d + datetime.timedelta(days=6 - d.weekday())
-        m.run_until = sunday + self.cleaned_data['run_for']
+        m.run_until = sunday + self.cleaned_data['run_for'] + datetime.timedelta(days=1)
         if commit:
             m.save()
         return m
