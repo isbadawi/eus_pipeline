@@ -1,5 +1,5 @@
 *.pyc
 *.swp
-*.orig
 *.db
+.env
 settings_local.py
