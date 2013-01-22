@@ -1,4 +1,4 @@
-# Django settings for eus_blurbs project.
+# Django settings for eus_pipeline project.
 import os
 
 PROJECT_DIR = os.path.dirname(__file__)
@@ -97,7 +97,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'eus_blurbs.urls'
+ROOT_URLCONF = 'eus_pipeline.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates'),
