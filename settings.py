@@ -117,17 +117,19 @@ INSTALLED_APPS = (
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # tinymce
-TINYMCE_JS_URL = STATIC_URL + 'js/tiny_mce/tiny_mce.js'
-TINYMCE_JS_ROOT = STATIC_ROOT + 'js/tiny_mce'
+TINYMCE_JS_URL = '//cdn.jsdelivr.net/tinymce/3.5.8/tiny_mce.js'
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'advanced',
     'plugins': 'paste',
+    'theme_advanced_statusbar_location': 'none',
+    'theme_advanced_toolbar_location': 'bottom',
     'theme_advanced_buttons1': ''.join((
         'bold,italic,underline,strikethrough,separator,',
         'undo,redo,separator,bullist,numlist,separator,link,unlink,',
         'separator,removeformat')),
     'theme_advanced_buttons2': '',
     'theme_advanced_buttons3': '',
+    'theme_advanced_toolbar_align': 'center',
     'paste_text_sticky': True,
     'paste_text_sticky_default': True,
     'invalid_elements': 'pre,div',
