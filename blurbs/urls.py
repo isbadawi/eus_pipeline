@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'^$', CreateBlurbView.as_view(), name='submit'),
     url(r'^submitted/$', TemplateView.as_view(
         template_name='blurbs/submitted.html'
-    ), name='submitted'), 
+    ), name='submitted'),
     url(r'^generate/$', login_required(login_url='/admin/')(
         PipelineView.as_view()
     ), name='generate'),
