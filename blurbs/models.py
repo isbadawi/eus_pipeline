@@ -7,7 +7,7 @@ from blurbs.fields import DeletingFileField
 
 class BlurbManager(models.Manager):
     def active(self):
-        return self.get_query_set().filter(
+        return self.get_queryset().filter(
             run_until__gte=datetime.date.today(),
             approved=True,
         )
