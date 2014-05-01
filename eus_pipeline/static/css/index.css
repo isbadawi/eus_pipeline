@@ -41,7 +41,7 @@ img {
 
 #header h1 {
     margin: 0;
-    font-size: 2em;    
+    font-size: 2em;
 }
 
 #body {
@@ -101,6 +101,14 @@ img {
     padding: 0.5em;
 }
 
+#submit-blurb input[type="email"] {
+    font-size: 1.2em;
+    width: 350px;
+    border-color: #e8e3e3;
+    border-width: 1px;
+    padding: 0.5em;
+}
+
 #submit-blurb textarea {
     width: 400px;
 }
@@ -116,4 +124,3 @@ img {
 ul.errorlist li {
     color: red;
 }
-                      
