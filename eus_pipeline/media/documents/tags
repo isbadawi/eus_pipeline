@@ -1,0 +1,150 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+App	src/js/pebble-js-app.js	/^var App = {$/;"	r
+BUNDLES	src/js/pebble-js-app.js	/^    BUNDLES: TRANSIT_API_URL + '\/v2\/bundles?'$/;"	r
+DIRECTION_KEY	src/comm.h	/^  DIRECTION_KEY,$/;"	e	enum:__anon1
+DONE_KEY	src/comm.h	/^  DONE_KEY$/;"	e	enum:__anon1
+EMPTY_ROUTE	src/pebble-transitapp.c	/^static Route EMPTY_ROUTE = {"", "", "", "", ""};$/;"	v	file:
+ENDPOINTS	src/js/pebble-js-app.js	/^  ENDPOINTS: {$/;"	r
+ERRORS	src/js/pebble-js-app.js	/^  ERRORS: {$/;"	r
+FOLLOWING_DEPARTURE_KEY	src/comm.h	/^  FOLLOWING_DEPARTURE_KEY,$/;"	e	enum:__anon1
+Geolocation	src/js/pebble-js-app.js	/^var Geolocation = {$/;"	r
+Http	src/js/pebble-js-app.js	/^var Http = {$/;"	r
+ICON	src/route_layer.h	/^  enum { TEXT, ICON } name_layer_type;$/;"	e	enum:__anon4::__anon5
+ICON_KEY	src/comm.h	/^  ICON_KEY,$/;"	e	enum:__anon1
+INDEX_KEY	src/comm.h	/^  INDEX_KEY,$/;"	e	enum:__anon1
+LOG	src/utils.h	/^#define LOG(/;"	d
+MS_PER_MINUTE	src/js/pebble-js-app.js	/^  MS_PER_MINUTE: 1000 * 60,$/;"	r
+NAME_KEY	src/comm.h	/^  NAME_KEY,$/;"	e	enum:__anon1
+NEXT_DEPARTURE_KEY	src/comm.h	/^  NEXT_DEPARTURE_KEY,$/;"	e	enum:__anon1
+OPTIONS	src/js/pebble-js-app.js	/^  OPTIONS: {$/;"	r
+ROUTES	src/js/pebble-js-app.js	/^    ROUTES: TRANSIT_API_URL + '\/v2\/routes\/nearby?',$/;"	r
+ROUTE_LAYER_H	src/route_layer.h	/^#define ROUTE_LAYER_H$/;"	d
+Route	src/comm.h	/^} Route;$/;"	t	typeref:struct:__anon2
+RouteData	src/comm.h	/^} RouteData;$/;"	t	typeref:struct:__anon3
+RouteLayer	src/route_layer.h	/^typedef Layer RouteLayer;$/;"	t
+RouteLayerData	src/route_layer.h	/^} RouteLayerData;$/;"	t	typeref:struct:__anon4
+TEXT	src/route_layer.h	/^  enum { TEXT, ICON } name_layer_type;$/;"	e	enum:__anon4::__anon5
+TRANSIT_API_URL	src/js/pebble-js-app.js	/^var TRANSIT_API_URL = 'http:\/\/staging.thetransitapp.com';$/;"	r
+TimeUtil	src/js/pebble-js-app.js	/^var TimeUtil = {$/;"	r
+TransitApi	src/js/pebble-js-app.js	/^var TransitApi = {$/;"	r
+UPDATE_ROUTES_KEY	src/comm.h	/^  UPDATE_ROUTES_KEY,$/;"	e	enum:__anon1
+_comm_h_included	src/comm.h	/^#define _comm_h_included$/;"	d
+_get	src/js/pebble-js-app.js	/^  _get: function(url, params, raw, callback) {$/;"	r
+app_message_keys	src/comm.h	/^} app_message_keys;$/;"	t	typeref:enum:__anon1
+array	src/js/pebble-js-app.js	/^      var array = [];$/;"	r
+break	src/js/pebble-js-app.js	/^        break;$/;"	r
+bytes	src/js/pebble-js-app.js	/^      var bytes = new Uint8Array(response);$/;"	r
+callback	src/js/pebble-js-app.js	/^    navigator.geolocation.getCurrentPosition(callback, callback, this.OPTIONS);$/;"	r
+clear_route_layers	src/pebble-transitapp.c	/^static void clear_route_layers(void) {$/;"	f	file:
+comm_destroy	src/comm.c	/^void comm_destroy(void) {$/;"	f
+comm_init	src/comm.c	/^void comm_init(RouteData* route_data) {$/;"	f
+comm_update_routes	src/comm.c	/^void comm_update_routes(void) {$/;"	f
+continue	src/js/pebble-js-app.js	/^        continue;$/;"	r
+deinit	src/pebble-transitapp.c	/^static void deinit(void) {$/;"	f	file:
+departingSoon	src/js/pebble-js-app.js	/^  departingSoon: function (route) {$/;"	r
+departureTimes	src/js/pebble-js-app.js	/^  departureTimes: function (route) {$/;"	r
+departure_times	src/js/pebble-js-app.js	/^    var departure_times = this.departureTimes(route);$/;"	r
+diff	src/js/pebble-js-app.js	/^    var diff = later.getTime() - earlier.getTime();$/;"	r
+direction	src/comm.h	/^  char direction[20];$/;"	m	struct:__anon2
+direction	src/js/pebble-js-app.js	/^        direction: routes[i].direction,$/;"	r
+direction	src/js/pebble-js-app.js	/^      direction: route.directions[0].schedule_items[0].headsign,$/;"	r
+direction_layer	src/route_layer.h	/^  TextLayer *direction_layer;$/;"	m	struct:__anon4
+draw_current_time	src/pebble-transitapp.c	/^static void draw_current_time(void) {$/;"	f	file:
+enableHighAccuracy	src/js/pebble-js-app.js	/^    enableHighAccuracy: true,$/;"	r
+encodeParams	src/js/pebble-js-app.js	/^  encodeParams: function (params) {$/;"	r
+feed	src/js/pebble-js-app.js	/^      var feed = bundle.feeds[i];$/;"	r
+fetchImages	src/js/pebble-js-app.js	/^  fetchImages: function (routes, callback) {$/;"	r
+fetches	src/js/pebble-js-app.js	/^    var fetches = 0;$/;"	r
+following_departure	src/comm.h	/^  char following_departure[8];$/;"	m	struct:__anon2
+following_departure	src/js/pebble-js-app.js	/^        following_departure: routes[i].following_departure$/;"	r
+following_departure	src/js/pebble-js-app.js	/^      following_departure: departure_times.following_departure.toString(),$/;"	r
+following_departure	src/js/pebble-js-app.js	/^      following_departure: following_departure$/;"	r
+following_departure	src/js/pebble-js-app.js	/^    var following_departure = TimeUtil.minutesFromNow(items[i].departure_time);$/;"	r
+following_departure_layer	src/route_layer.h	/^  TextLayer *following_departure_layer;$/;"	m	struct:__anon4
+format	src/js/pebble-js-app.js	/^      format: 'json'$/;"	r
+getCurrentPosition	src/js/pebble-js-app.js	/^  getCurrentPosition: function (callback) {$/;"	r
+getData	src/js/pebble-js-app.js	/^  getData: function(url, params, callback) {$/;"	r
+getJson	src/js/pebble-js-app.js	/^  getJson: function (endpoint, position, callback) {$/;"	r
+getJson	src/js/pebble-js-app.js	/^  getJson: function(url, params, callback) {$/;"	r
+getRouteNameImage	src/js/pebble-js-app.js	/^  getRouteNameImage: function (route, bundle) {$/;"	r
+getRoutesDepartingSoon	src/js/pebble-js-app.js	/^  getRoutesDepartingSoon: function (position, callback) {$/;"	r
+handle_tick	src/pebble-transitapp.c	/^static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {$/;"	f	file:
+i	src/js/pebble-js-app.js	/^    var i = 0;$/;"	r
+icon	src/comm.h	/^  uint8_t icon[125];$/;"	m	struct:__anon2
+icon	src/js/pebble-js-app.js	/^          route.icon = image_data;$/;"	r
+icon	src/js/pebble-js-app.js	/^        messages.push({ index: i, icon: routes[i].icon });$/;"	r
+icon	src/route_layer.h	/^  GBitmap *icon;$/;"	m	struct:__anon4
+icon_layer	src/pebble-transitapp.c	/^static BitmapLayer* icon_layer;$/;"	v	file:
+icons_destroy	src/pebble-transitapp.c	/^static void icons_destroy(void) {$/;"	f	file:
+icons_init	src/pebble-transitapp.c	/^static BitmapLayer* icons_init(GRect bounds) {$/;"	f	file:
+image	src/js/pebble-js-app.js	/^        var image = feed.images[j];$/;"	r
+imageUrl	src/js/pebble-js-app.js	/^  imageUrl: function (image_name) {$/;"	r
+in_dropped_handler	src/comm.c	/^static void in_dropped_handler(AppMessageResult reason, void *context) {$/;"	f	file:
+in_received_handler	src/comm.c	/^static void in_received_handler(DictionaryIterator *iter, void *context) {$/;"	f	file:
+index	src/js/pebble-js-app.js	/^        index: i,$/;"	r
+index	src/js/pebble-js-app.js	/^    messages.push({ done: true, index: i });$/;"	r
+init	src/js/pebble-js-app.js	/^  init: function () {$/;"	r
+init	src/pebble-transitapp.c	/^static void init(void) {$/;"	f	file:
+items	src/js/pebble-js-app.js	/^    var items = route.directions[0].schedule_items;$/;"	r
+lat	src/js/pebble-js-app.js	/^      lat: position.coords.latitude,$/;"	r
+loading_icons	src/pebble-transitapp.c	/^GBitmap *loading_icons[3];$/;"	v
+longitude_param_name	src/js/pebble-js-app.js	/^    longitude_param_name = endpoint === 'routes' ? 'lng' : 'lon';$/;"	r
+main	src/pebble-transitapp.c	/^int main(void) {$/;"	f
+maximumAge	src/js/pebble-js-app.js	/^    maximumAge: 0,$/;"	r
+messages	src/js/pebble-js-app.js	/^    var messages = [];$/;"	r
+minutesBetween	src/js/pebble-js-app.js	/^  minutesBetween: function (earlier, later) {$/;"	r
+minutesFromNow	src/js/pebble-js-app.js	/^  minutesFromNow: function (iso8601_date) {$/;"	r
+name	src/comm.h	/^  char name[30];$/;"	m	struct:__anon2
+name	src/js/pebble-js-app.js	/^        name: routes[i].name,$/;"	r
+name_layer_icon	src/route_layer.h	/^  BitmapLayer *name_layer_icon;$/;"	m	struct:__anon4
+name_layer_text	src/route_layer.h	/^  TextLayer *name_layer_text;$/;"	m	struct:__anon4
+name_layer_type	src/route_layer.h	/^  enum { TEXT, ICON } name_layer_type;$/;"	m	struct:__anon4	typeref:enum:__anon4::__anon5
+next_departure	src/comm.h	/^  char next_departure[8];$/;"	m	struct:__anon2
+next_departure	src/js/pebble-js-app.js	/^        next_departure: routes[i].next_departure,$/;"	r
+next_departure	src/js/pebble-js-app.js	/^      next_departure = TimeUtil.minutesFromNow(items[i++].departure_time);$/;"	r
+next_departure	src/js/pebble-js-app.js	/^      next_departure: departure_times.next_departure.toString(),$/;"	r
+next_departure	src/js/pebble-js-app.js	/^      next_departure: next_departure,$/;"	r
+next_departure	src/js/pebble-js-app.js	/^    var next_departure = -1;$/;"	r
+next_departure_layer	src/route_layer.h	/^  TextLayer *next_departure_layer;$/;"	m	struct:__anon4
+onload	src/js/pebble-js-app.js	/^    req.onload = function (e) {$/;"	r
+params	src/js/pebble-js-app.js	/^    Http.getJson(url, params, function (response) {$/;"	r
+params	src/js/pebble-js-app.js	/^    this._get(url, params, false, function (text) {$/;"	r
+params	src/js/pebble-js-app.js	/^    this._get(url, params, true, function (response) {$/;"	r
+params	src/js/pebble-js-app.js	/^    var params = {$/;"	r
+params	src/js/pebble-js-app.js	/^  _get: function(url, params, raw, callback) {$/;"	r
+params	src/js/pebble-js-app.js	/^  getData: function(url, params, callback) {$/;"	r
+params	src/js/pebble-js-app.js	/^  getJson: function(url, params, callback) {$/;"	r
+position	src/js/pebble-js-app.js	/^      this.getJson('routes', position, function (routes) {$/;"	r
+position	src/js/pebble-js-app.js	/^    this.getJson('bundles', position, function (bundles) {$/;"	r
+position	src/js/pebble-js-app.js	/^  getJson: function (endpoint, position, callback) {$/;"	r
+received_first	src/comm.h	/^  int received_first;$/;"	m	struct:__anon3
+req	src/js/pebble-js-app.js	/^    var req = new XMLHttpRequest();$/;"	r
+responseType	src/js/pebble-js-app.js	/^      req.responseType = 'arraybuffer';$/;"	r
+return	src/js/pebble-js-app.js	/^      return;$/;"	r
+route_data	src/pebble-transitapp.c	/^static RouteData* route_data;$/;"	v	file:
+route_layer_create	src/route_layer.c	/^RouteLayer *route_layer_create(GRect frame)$/;"	f
+route_layer_destroy	src/route_layer.c	/^void route_layer_destroy(RouteLayer* route_layer) {$/;"	f
+route_layer_set_data	src/route_layer.c	/^void route_layer_set_data(RouteLayer* route_layer, Route *route) {$/;"	f
+route_layers	src/pebble-transitapp.c	/^static RouteLayer* route_layers[4];$/;"	v	file:
+route_name_image	src/js/pebble-js-app.js	/^    var route_name_image = this.getRouteNameImage(route, bundle);$/;"	r
+routes	src/comm.h	/^  Route routes[4];$/;"	m	struct:__anon3
+routes	src/js/pebble-js-app.js	/^        routes = routes$/;"	r
+sendMessages	src/js/pebble-js-app.js	/^  sendMessages: function (messages) {$/;"	r
+sendRoutes	src/js/pebble-js-app.js	/^  sendRoutes: function (routes) {$/;"	r
+simpleRoute	src/js/pebble-js-app.js	/^  simpleRoute: function (route, bundle) {$/;"	r
+simple_text_layer_create	src/utils.c	/^TextLayer* simple_text_layer_create(GRect frame, GTextAlignment alignment,$/;"	f
+time_buffer	src/pebble-transitapp.c	/^static char time_buffer[6];$/;"	v	file:
+time_layer	src/pebble-transitapp.c	/^static TextLayer* time_layer;$/;"	v	file:
+timeout	src/js/pebble-js-app.js	/^    timeout: Infinity$/;"	r
+updateRoutes	src/js/pebble-js-app.js	/^  updateRoutes: function () {$/;"	r
+updated	src/comm.h	/^  int updated;$/;"	m	struct:__anon3
+url	src/js/pebble-js-app.js	/^    req.open('GET', url, true);$/;"	r
+url	src/js/pebble-js-app.js	/^    url = url + this.encodeParams(params);$/;"	r
+url	src/js/pebble-js-app.js	/^    var url = this.ENDPOINTS[endpoint.toUpperCase()];$/;"	r
+utils_h_included	src/utils.h	/^#define utils_h_included$/;"	d
+window	src/pebble-transitapp.c	/^static Window *window;$/;"	v	file:
