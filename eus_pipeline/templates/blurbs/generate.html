@@ -2,42 +2,74 @@
 
 {% block extrahead %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blurbs.css"/>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/generate-pipeline.js"></script>
 {% endblock %}
 
 {% block body %}
 
 <div id="blurb-list">
-    <h2>Approved blurbs</h2>
-    {% for blurb in blurbs %}
-    <div id="{{ blurb.id }}" class="blurb">{{ blurb.title }}</div>
-    {% endfor %}
+  <h2>Approved blurbs</h2>
+  <div class="blurb-list" data-bind="sortable: { data: blurbs, connectClass: 'blurb-list' }">
+    <div class="blurb" data-bind="attr: { id: id }, text: title"></div>
+  </div>
 </div>
 
-<div id="pipeline">
-    <h2>Pipeline Contents
-    <button id="new-category">New category</button>
-    </h2>
+<div id="pipeline" class="pipeline">
+  <h2>Pipeline Contents
+    <button id="new-category" data-bind="click: addCategory">New category</button>
+  </h2>
+  <div class="category-list" data-bind="sortable: { data: categories, connectClass: 'category-list' }">
+    <div class="category" data-bind="event: { dblclick: $parent.removeCategory }">
+      <div class="category-header"
+        data-bind="text: name, visible: !editing(), click: startEditing">
+      </div>
+      <div class="category-header" data-bind="if: editing">
+        <input type="text" data-bind="value: name" />
+        <button data-bind="click: stopEditing">Ok</button>
+      </div>
+      <div class="blurb-list" data-bind="sortable: { data: blurbs, connectClass: 'blurb-list'}">
+      <div class="blurb" data-bind="attr: { id: id }, text: title"></div>
+    </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <div id="events">
-    <h2>Events 
-    <button id="add-event">Add event</button>
+    <h2>Events
+    <button data-bind="click: addEvent">Add event</button>
     </h2>
-    <textarea id="new-event"></textarea>
+    <textarea id="new-event" data-bind="value: newEventText"></textarea>
+    <div data-bind="sortable: events">
+      <div class="event" data-bind="event: { dblclick: $parent.removeEvent }">
+        <div class="event-title" data-bind="text: title"></div>
+        <div class="event-description" data-bind="html: description"></div>
+      </div>
+    </div>
 </div>
 
 <form id="preview" action="" target="_blank" method="post">
 {% csrf_token %}
 <input type="submit" value="Preview"/>
+<input type="hidden" name="pipeline" data-bind="value: pipeline" />
 </form>
 
 <form id="download" action="" method="post">
 {% csrf_token %}
 <input type="hidden" name="download" value="1"/>
 <input type="submit" value="Download"/>
+<input type="hidden" name="pipeline" data-bind="value: pipeline" />
 </form>
+{% endblock %}
 
+{% block extrajs %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/knockout.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/knockout-sortable.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/generate-pipeline.js"></script>
+<script type="text/javascript">
+$(function() {
+  ko.applyBindings(new pipeline.GeneratorViewModel('{{ blurbs|safe }}'));
+});
+</script>
 {% endblock %}

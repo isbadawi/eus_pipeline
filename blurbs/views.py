@@ -40,7 +40,10 @@ class PipelineView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PipelineView, self).get_context_data(**kwargs)
-        context['blurbs'] = Blurb.objects.active()
+        context['blurbs'] = json.dumps([{
+            'id': blurb.id,
+            'title': blurb.title
+        } for blurb in Blurb.objects.active()])
         return context
 
     def _prepare(self, blurb):
@@ -61,7 +64,7 @@ class PipelineView(TemplateView):
             for blurb in header['blurbs']:
                 header['entries'].append({
                     'index': index,
-                    'title': blurbs[blurb].title 
+                    'title': blurbs[blurb].title
                 })
                 index += 1
             header['letter'] = chr(ord('a') + i)
@@ -69,7 +72,7 @@ class PipelineView(TemplateView):
         blurbs = [{
             'index': i,
             'title': blurb.title,
-            'body': self._prepare(blurb.body) 
+            'body': self._prepare(blurb.body)
         } for i, blurb in enumerate(blurbs, 1)]
         response = render(request, 'pipeline.html', {
             'sidebar_entries': headers,

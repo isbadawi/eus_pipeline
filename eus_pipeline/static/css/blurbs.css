@@ -40,7 +40,7 @@ div.event-description {
     background-color: #e8e3e3;
     min-height: 10px;
     color: black;
-}  
+}
 
 #pipeline {
     background-color: #d3d3d3;
@@ -73,7 +73,7 @@ div.category-header {
     color: white;
 }
 
-div.category-list {
+div.blurb-list {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     background-color: #e8e3e3;
@@ -94,7 +94,7 @@ div#blurb-list {
     width: 300px;
     color: white;
 }
- 
+
 div.blurb {
     padding: 10px;
     border-radius: 5px;
@@ -105,17 +105,6 @@ div.blurb {
     background-color: red;
 }
 
-div.blurb-display {
-    margin-left: 10px;
-    padding: 10px;
-    float: left;
-    background-color: #e8e3e3;
-    border-radius: 5px;
-    border-color: black;
-    border: solid;
-}
-
 #generate {
     clear: left;
 }
-

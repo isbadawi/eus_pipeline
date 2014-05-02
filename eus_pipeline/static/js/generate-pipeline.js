@@ -1,107 +1,73 @@
-var pipeline = {
-    new_category: function (name) {
-        var cat = $('<div class="category">');
-        var header = $('<div class="category-header">');
-        header.html(name);
-        var list = $('<div class="category-list">');
-        list.sortable({
-            connectWith: '#blurb-list, div.category-list'
-        });
-        header.click(function() {
-            if ($(this).find('button').length)
-                return;
-            var ok = $('<button>Ok</button>');
-            var input = $('<input type="text" value="' + $(this).html() + '"/>');
-           
-            var that = $(this);
-            input.click(function() {
-                return false;
-            }); 
-            ok.click(function() {
-                that.html(input.val());
-                return false;
-            }); 
-            $(this).html('');
-            $(this).append(input);
-            $(this).append(ok);
-        });
-        cat.append(header);
-        cat.append(list);
-        cat.dblclick(function() {
-            $(this).find('div.blurb').each(function () {
-                $('#blurb-list').append($(this));
-        });
-        $(this).remove();
-        });
-        $('#pipeline').append(cat);
-    },
+var pipeline = pipeline || {};
 
-    new_event: function(lines) {
-        var newevent = $('<div class="event">');
-        var title = $('<div class="event-title">');
-        title.html(lines[0]);
-        var content = $('<div class="event-description">');
-        content.html(lines.slice(1).join("<br/>"));
-        newevent.append(title);
-        newevent.append(content);
-        $('#events').append(newevent);
-        newevent.dblclick(function() {
-            $(this).remove();
-        });
-        $('#new-event').val('');  
-    },
+pipeline.Category = function(name) {
+  var self = this;
 
-    get: function() {
-        var headers = [];
-        $('#pipeline .category').each(function() {
-            var blurbs = [];
-            $(this).find('.blurb').each(function() {
-                blurbs.push(parseInt($(this).attr('id')));
-            });
-            headers.push({
-                'title': $(this).find('.category-header').html(),
-                'blurbs': blurbs
-            });
-        });
-        var events = [];
-        var index = 1;
-        $('#events .event').each(function() {
-            events.push({
-                'index': index,
-                'title': $(this).find('.event-title').html(),
-                'lines': $(this).find('.event-description').html().split("<br>")
-            });
-            index = index + 1;
-        });
-        return JSON.stringify({
-            'headers': headers,
-            'events': events
-        });
-    },
+  self.name = ko.observable(name);
+  self.blurbs = ko.observableArray();
+  self.editing = ko.observable(false);
+
+  self.startEditing = function() {
+    self.editing(true);
+  };
+
+  self.stopEditing = function() {
+    self.editing(false);
+  };
 };
 
-$(function() {
-    $('#pipeline').sortable();
-    $('#events').sortable();
-    $('#blurb-list').sortable({
-        connectWith: 'div.category-list'
+pipeline.GeneratorViewModel = function(approvedBlurbs) {
+  var self = this;
+
+  self.blurbs = ko.observableArray(JSON.parse(approvedBlurbs));
+  self.categories = ko.observableArray();
+
+  self.addCategory = function() {
+    var name = prompt('Category name', '');
+    if (name) {
+      self.categories.push(new pipeline.Category(name));
+    }
+  };
+
+  self.removeCategory = function(category) {
+    self.categories.remove(category);
+    category.blurbs().forEach(function (blurb) {
+      self.blurbs.push(blurb);
     });
-    $('#new-category').click(function() {
-        var name = prompt('Category name', '');
-        if (name)
-            pipeline.new_category(name);
+  };
+
+  self.events = ko.observableArray();
+  self.newEventText = ko.observable('');
+
+  self.addEvent = function() {
+    if (self.newEventText().trim() !== '') {
+      var lines = self.newEventText().split('\n');
+      self.events.push({
+        title: lines[0],
+        description: lines.slice(1).join('<br/>')
+      });
+    }
+    self.newEventText('');
+  };
+
+  self.removeEvent = function(event) {
+    self.events.remove(event);
+  };
+
+  self.pipeline = ko.computed(function() {
+    var headers = self.categories().map(function(category) {
+      return {
+        title: category.name(),
+        blurbs: category.blurbs().map(function (blurb) { return blurb.id; })
+      }
     });
-    $('#preview, #download').submit(function() {
-        var input = $('<input>');
-        input.attr('type', 'hidden');
-        input.attr('name', 'pipeline');
-        input.attr('value', pipeline.get());
-        $(this).append(input);
+    var events = self.events().map(function(event, index) {
+      return {
+        index: index + 1,
+        title: event.title,
+        lines: event.description.split('<br/>')
+      }
     });
-    $('#add-event').click(function() {
-        if ($('#new-event').val()) {
-            var lines = $('#new-event').val().split("\n");
-            pipeline.new_event(lines);
-        }
-    });
-});  
+    return JSON.stringify({headers: headers, events: events});
+  });
+};
