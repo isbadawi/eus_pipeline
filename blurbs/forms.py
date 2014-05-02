@@ -22,7 +22,7 @@ class BlurbForm(BetterModelForm):
            ('Blurb', {
               'fields': ['title', 'body', 'run_for', 'comments']
            }),
-        ] 
+        ]
 
     def save(self, commit=True):
         m = super(BlurbForm, self).save(commit=False)

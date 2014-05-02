@@ -62,10 +62,10 @@ class Email(models.Model):
     <li>{{ blurb.title }} to get the blurb's title</li>
     <li>{{ blurb.body|safe }} to get the text of the blurb</li>
     <li>{{ blurb.run_until }} to get the date until which the blurb will
-    run. The default format is "AP-style month dd, yyyy" 
-    (e.g. Feb. 14, 2012); this can be adjusted by writing 
+    run. The default format is "AP-style month dd, yyyy"
+    (e.g. Feb. 14, 2012); this can be adjusted by writing
     {{ blurb.run_until|date:'format' }} with a special format string, which
-    is documented <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date">here</a>. 
+    is documented <a href="https://docs.djangoproject.com/en/dev/ref/templates/builtins/#date">here</a>.
     For instance, a dd/mm/yyyy format corresponds to
     {{ blurb.run_until|date:'d/m/Y' }}. (The default format corresponds to
     {{ blurb.run_until|date:'N j, Y' }}).</li>

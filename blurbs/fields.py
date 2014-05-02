@@ -11,4 +11,3 @@ class DeletingFileField(models.FileField):
         file = getattr(instance, self.attname)
         if file:
             file.delete(save=False)
- 

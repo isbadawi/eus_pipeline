@@ -12,7 +12,7 @@ class DocumentInline(admin.TabularInline):
 
 class BlurbAdmin(admin.ModelAdmin):
     inlines = [DocumentInline]
-    list_display = ['title', 'contact_info', 'date_submitted', 
+    list_display = ['title', 'contact_info', 'date_submitted',
         'run_until', 'approved']
     list_filter = ['approved', 'run_until']
     readonly_fields = ['comments', 'approved']
@@ -64,4 +64,4 @@ admin.site.register(Email, EmailAdmin)
 
 # unbelievably hacky way to disable admin logging
 def no_op(self, *args, **kwargs): return
-LogEntry.objects.log_action = types.MethodType(no_op, LogEntry.objects) 
+LogEntry.objects.log_action = types.MethodType(no_op, LogEntry.objects)
