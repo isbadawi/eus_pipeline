@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
-{{ form.media }}
-<script type="text/javascript" src="{{ STATIC_URL }}js/blurb-form.js"></script>
+  {{ form.media }}
 {% endblock %}
 {% block logo %}{% endblock %}
 {% block body %}
@@ -46,7 +44,10 @@ on the pipeline.</li>
         {% endif %}
         <li{{ field.row_attrs }}>
             {{ field.errors }}
-            {{ field.label_tag }} <br/>
+            {{ field.label_tag }}
+            {% if field.field.required %}
+              <span style="color: red;">*</span>
+              {% endif %} <br/>
             {% if field.help_text %}
                 <div class="help-text">{{ field.help_text }}</div>
             {% endif %}
@@ -58,16 +59,21 @@ on the pipeline.</li>
     {% endif %}
     {% endfor %}
   {% if forloop.last %}
-     <li id="attachment-list">Attachments <button id="more-attachments">Add</button><br/>
      {{ document_formset.management_form }}
-     {% for document_form in document_formset %}
+     <li>Attachments
+     <button data-bind="click: addAttachment">Add</button><br/>
+     <!-- ko foreach: ko.utils.range(0, attachments() - 1) -->
      <ul>
-     <li>What is it? <br/>
-     {{ document_form.title }}
-     </li>
-     <li>{{ document_form.data }}</li>
+       <li>What is it? <br/>
+       <input type="text" maxlength="50"
+              data-bind="attr: { name: 'document_set-' + $data + '-title' }" />
+       </li>
+       <li>
+       <input type="file"
+              data-bind="attr: { name: 'document_set-' + $data + '-data' }">
+       </li>
      </ul>
-     {% endfor %}    
+     <!-- /ko -->
      </li>
      <input type="submit" value="Submit blurb"/>
   {% endif %}
@@ -76,4 +82,10 @@ on the pipeline.</li>
 {% endfor %}
 
 </form>
+{% endblock %}
+
+{% block extrajs %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.2.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/knockout.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/blurb-form.js"></script>
 {% endblock %}
