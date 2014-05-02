@@ -30,21 +30,24 @@ class BlurbAdmin(admin.ModelAdmin):
     ]
     actions = ['approve', 'reject']
 
+    def _action(self, request, queryset, action, label, email):
+        rows_affected = action()
+        msg = '%s blurb%s' % (rows_affected, 's' if rows_affected > 1 else '')
+        self.message_user(request, '%s successfully %s.' % (msg, label))
+        for blurb in queryset:
+            if blurb.email:
+                send_email('Blurb %s' % label, email, blurb.email, blurb=blurb)
+
     def approve(self, request, queryset):
-        rows = queryset.update(approved=True)
-        msg = '%s blurb%s' % (rows, 's' if rows > 1 else '')
-        self.message_user(request, '%s successfully approved.' % msg)
-        for blurb in [b for b in queryset if b.email]:
-            send_email('Blurb approved', 'Approval', blurb.email, blurb=blurb)
+        self._action(request, queryset,
+                     lambda: queryset.update(approved=True),
+                     'approved', 'Approval')
     approve.short_description = 'Approve selected blurbs'
 
     def reject(self, request, queryset):
-        rows = queryset.count()
-        msg = '%s blurb%s' % (rows, 's' if rows > 1 else '')
-        self.message_user(request, '%s successfully rejected.' % msg)
-        for blurb in [b for b in queryset if b.email]:
-            send_email('Blurb rejected', 'Rejection', blurb.email, blurb=blurb)
-        queryset.delete()
+        self._action(request, queryset,
+                     lambda: (queryset.count(), queryset.delete())[0],
+                     'rejected', 'Rejection')
     reject.short_description = 'Reject (and delete) selected blurbs'
 
 class EmailAdmin(admin.ModelAdmin):
