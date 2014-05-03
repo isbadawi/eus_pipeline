@@ -9,7 +9,7 @@
 <div id="blurb-list">
   <h2>Approved blurbs</h2>
   <div class="blurb-list" data-bind="sortable: { data: blurbs, connectClass: 'blurb-list' }">
-    <div class="blurb" data-bind="attr: { id: id }, text: title"></div>
+    <div class="blurb" data-bind="text: title"></div>
   </div>
 </div>
 
@@ -24,7 +24,7 @@
         <input type="text" data-bind="value: name, visible: editing, hasFocus: editing" />
       </div>
       <div class="blurb-list" data-bind="sortable: { data: blurbs, connectClass: 'blurb-list'}">
-      <div class="blurb" data-bind="attr: { id: id }, text: title"></div>
+      <div class="blurb" data-bind="text: title"></div>
     </div>
     </div>
   </div>
