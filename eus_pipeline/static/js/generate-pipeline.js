@@ -30,6 +30,9 @@ pipeline.GeneratorViewModel = function(approvedBlurbs) {
   };
 
   self.removeCategory = function(category) {
+    if (category.editing()) {
+      return;
+    }
     self.categories.remove(category);
     category.blurbs().forEach(function (blurb) {
       self.blurbs.push(blurb);
