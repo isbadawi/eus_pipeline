@@ -19,12 +19,9 @@
   </h2>
   <div class="category-list" data-bind="sortable: { data: categories, connectClass: 'category-list' }">
     <div class="category" data-bind="event: { dblclick: $parent.removeCategory }">
-      <div class="category-header"
-        data-bind="text: name, visible: !editing(), click: startEditing">
-      </div>
-      <div class="category-header" data-bind="if: editing">
-        <input type="text" data-bind="value: name" />
-        <button data-bind="click: stopEditing">Ok</button>
+      <div class="category-header">
+        <span data-bind="text: name, hidden: editing, click: startEditing"></span>
+        <input type="text" data-bind="value: name, visible: editing, hasFocus: editing" />
       </div>
       <div class="blurb-list" data-bind="sortable: { data: blurbs, connectClass: 'blurb-list'}">
       <div class="blurb" data-bind="attr: { id: id }, text: title"></div>

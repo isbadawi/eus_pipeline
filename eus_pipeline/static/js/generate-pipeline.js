@@ -1,3 +1,10 @@
+ko.bindingHandlers.hidden = {
+  update: function(element, valueAccessor) {
+    var hide = ko.unwrap(valueAccessor());
+    ko.bindingHandlers.visible.update(element, function() { return !hide; });
+  }
+};
+
 var pipeline = pipeline || {};
 
 pipeline.Category = function(name) {
@@ -9,10 +16,6 @@ pipeline.Category = function(name) {
 
   self.startEditing = function() {
     self.editing(true);
-  };
-
-  self.stopEditing = function() {
-    self.editing(false);
   };
 };
 
@@ -30,13 +33,10 @@ pipeline.GeneratorViewModel = function(approvedBlurbs) {
   };
 
   self.removeCategory = function(category) {
-    if (category.editing()) {
-      return;
+    if (!category.editing()) {
+      self.categories.remove(category);
+      self.blurbs.push.apply(self.blurbs, category.blurbs());
     }
-    self.categories.remove(category);
-    category.blurbs().forEach(function (blurb) {
-      self.blurbs.push(blurb);
-    });
   };
 
   self.events = ko.observableArray();
